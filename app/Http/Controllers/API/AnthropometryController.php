@@ -26,15 +26,15 @@ class AnthropometryController extends Controller
 
         if ($imt < 18.5) {
             $result = 'Underweight';
-        } elseif ($imt >= 18.5 && $imt <= 24.9) {
+        } elseif ($imt >= 18.5 && $imt <= 22.9) {
             $result = 'Normal';
-        } elseif ($imt >= 25 && $imt <= 29.9) {
+        } elseif ($imt >= 23 && $imt <= 28.9) {
             $result = 'Overweight';
-        } elseif ($imt >= 30 && $imt <= 34.9) {
+        } elseif ($imt >= 29 && $imt <= 33.9) {
             $result = 'Obesity Class I';
-        } elseif ($imt >= 35 && $imt <= 39.9) {
+        } elseif ($imt >= 34 && $imt <= 38.9) {
             $result = 'Obesity Class II';
-        } elseif ($imt >= 40) {
+        } elseif ($imt >= 39) {
             $result = 'Obesity Class III';
         }
 
