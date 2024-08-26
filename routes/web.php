@@ -32,12 +32,36 @@ Route::middleware('role:admin')->group(function () {
         'profile' => Backend\ProfileController::class,
         'change-password' => Backend\ChangePasswordController::class,
     ]);
-    Route::get('consultations', [Backend\ConsultationController::class, 'index'])->name('consultations.index');
-    Route::get('consultations/list', [Backend\ConsultationController::class, 'list'])->name('consultations.list');
-    Route::get('consultations/new', [Backend\ConsultationController::class, 'new'])->name('consultations.new');
-    Route::get('consultations/person/{id}', [Backend\ConsultationController::class, 'person'])->name('consultations.person');
-    Route::get('consultations/content/{id}', [Backend\ConsultationController::class, 'content'])->name('consultations.content');
-    Route::post('consultations/send', [Backend\ConsultationController::class, 'send'])->name('consultations.send');
-    Route::post('consultations/attachment', [Backend\ConsultationController::class, 'attachment'])->name('consultations.attachment');
-    Route::post('consultations/delete-all', [Backend\ConsultationController::class, 'deleteAll'])->name('consultations.delete-all');
+
+    Route::prefix('histories')->name('histories.')->group(function () {
+        Route::get('bmi', [Backend\HistoryController::class, 'bmi'])->name('bmi');
+        Route::delete('bmi/{id}', [Backend\HistoryController::class, 'bmiDestroy'])->name('bmiDestroy');
+        Route::get('bmr', [Backend\HistoryController::class, 'bmr'])->name('bmr');
+        Route::delete('bmr/{id}', [Backend\HistoryController::class, 'bmrDestroy'])->name('bmrDestroy');
+        Route::get('breakfast', [Backend\HistoryController::class, 'breakfast'])->name('breakfast');
+        Route::delete('breakfast/{id}', [Backend\HistoryController::class, 'breakfastDestroy'])->name('breakfastDestroy');
+        Route::get('lunch', [Backend\HistoryController::class, 'lunch'])->name('lunch');
+        Route::delete('lunch/{id}', [Backend\HistoryController::class, 'lunchDestroy'])->name('lunchDestroy');
+        Route::get('dinner', [Backend\HistoryController::class, 'dinner'])->name('dinner');
+        Route::delete('dinner/{id}', [Backend\HistoryController::class, 'dinnerDestroy'])->name('dinnerDestroy');
+        Route::get('snack', [Backend\HistoryController::class, 'snack'])->name('snack');
+        Route::delete('snack/{id}', [Backend\HistoryController::class, 'snackDestroy'])->name('snackDestroy');
+        Route::get('drink', [Backend\HistoryController::class, 'drink'])->name('drink');
+        Route::delete('drink/{id}', [Backend\HistoryController::class, 'drinkDestroy'])->name('drinkDestroy');
+        Route::get('sport', [Backend\HistoryController::class, 'sport'])->name('sport');
+        Route::delete('sport/{id}', [Backend\HistoryController::class, 'sportDestroy'])->name('sportDestroy');
+    });
+    
+
+    Route::prefix('consultations')->name('consultations.')->group(function () {
+        Route::get('/', [Backend\ConsultationController::class, 'index'])->name('index');
+        Route::get('/list', [Backend\ConsultationController::class, 'list'])->name('list');
+        Route::get('/new', [Backend\ConsultationController::class, 'new'])->name('new');
+        Route::get('/person/{id}', [Backend\ConsultationController::class, 'person'])->name('person');
+        Route::get('/content/{id}', [Backend\ConsultationController::class, 'content'])->name('content');
+        Route::post('/send', [Backend\ConsultationController::class, 'send'])->name('send');
+        Route::post('/attachment', [Backend\ConsultationController::class, 'attachment'])->name('attachment');
+        Route::post('/delete-all', [Backend\ConsultationController::class, 'deleteAll'])->name('delete-all');
+    });
+    
 });

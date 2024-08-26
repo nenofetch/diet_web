@@ -12,6 +12,21 @@
             <li><a href="{{ route('drinks.index') }}"><i class="uil uil-coffee me-2"></i>Minuman</a></li>
             <li><a href="{{ route('sports.index') }}"><i class="uil uil-dumbbell me-2"></i>Olahraga</a></li>
             <li><a href="{{ route('educations.index') }}"><i class="uil uil-video me-2"></i>Edukasi</a></li>
+            <li class="sidebar-dropdown">
+                <a href="javascript:void(0)"><i class="uil uil-history me-2"></i>Riwayat</a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li><a href="{{ route('histories.bmi') }}">BMI</a></li>
+                        <li><a href="{{ route('histories.bmr') }}">BMR dan TDEE</a></li>
+                        <li><a href="{{ route('histories.breakfast') }}">Makanan Pagi</a></li>
+                        <li><a href="{{ route('histories.lunch') }}">Makanan Siang</a></li>
+                        <li><a href="{{ route('histories.dinner') }}">Makanan Malam</a></li>
+                        <li><a href="{{ route('histories.snack') }}">Cemilan</a></li>
+                        <li><a href="{{ route('histories.drink') }}">Air Minum</a></li>
+                        <li><a href="{{ route('histories.sport') }}">Olahraga</a></li>
+                    </ul>
+                </div>
+            </li>
             <li><a href="{{ route('consultations.index') }}"><i class="uil uil-comments me-2"></i>Konsultasi</a></li>
             <li><a href="{{ route('users.index') }}"><i class="uil uil-users-alt me-2"></i>Pengguna</a></li>
             <li class="sidebar-dropdown">
