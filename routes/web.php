@@ -14,6 +14,7 @@ use App\Events\ConsultationEvent;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return redirect('login');
 });
@@ -50,8 +51,9 @@ Route::middleware('role:admin')->group(function () {
         Route::delete('drink/{id}', [Backend\HistoryController::class, 'drinkDestroy'])->name('drinkDestroy');
         Route::get('sport', [Backend\HistoryController::class, 'sport'])->name('sport');
         Route::delete('sport/{id}', [Backend\HistoryController::class, 'sportDestroy'])->name('sportDestroy');
+        Route::get('export', [Backend\HistoryController::class, 'export'])->name('export');
     });
-    
+
 
     Route::prefix('consultations')->name('consultations.')->group(function () {
         Route::get('/', [Backend\ConsultationController::class, 'index'])->name('index');
@@ -63,5 +65,4 @@ Route::middleware('role:admin')->group(function () {
         Route::post('/attachment', [Backend\ConsultationController::class, 'attachment'])->name('attachment');
         Route::post('/delete-all', [Backend\ConsultationController::class, 'deleteAll'])->name('delete-all');
     });
-    
 });

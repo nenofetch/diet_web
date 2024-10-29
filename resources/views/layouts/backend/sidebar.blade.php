@@ -24,6 +24,7 @@
                         <li><a href="{{ route('histories.snack') }}">Cemilan</a></li>
                         <li><a href="{{ route('histories.drink') }}">Air Minum</a></li>
                         <li><a href="{{ route('histories.sport') }}">Olahraga</a></li>
+                        <li><a href="{{ route('histories.export') }}">Export Data</a></li>
                     </ul>
                 </div>
             </li>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\HistoryExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\History;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
 {
@@ -118,5 +120,10 @@ class HistoryController extends Controller
         History::find($id)->delete();
 
         return response()->json(['message' => 'Data berhasil dihapus!']);
+    }
+
+    public function export()
+    {
+        return Excel::download(new HistoryExport, 'riwayat.xlsx');
     }
 }
