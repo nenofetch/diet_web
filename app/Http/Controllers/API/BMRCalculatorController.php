@@ -37,10 +37,9 @@ class BMRCalculatorController extends Controller
 
 
         if ($gender == 'Laki-laki') {
-            $bmr = (10 * $weight) + (6.25 * $heightSquared) - (5 * $age) + 5;
-
+            $bmr = 66.5 + (13.7 * $weight) + (6.25 * $heightSquared) - (6.8 * $age);
         } else {
-            $bmr = (10 * $weight) + (6.25 * $heightSquared) - (5 * $age) - 161;
+            $bmr = 655 + (9.6 * $weight) + (1.8 * $heightSquared) - (4.7 * $age);
         }
 
 
@@ -89,7 +88,6 @@ class BMRCalculatorController extends Controller
 
 
         return ResponseFormatter::success($data, 'Data berhasil ditambahkan!');
-
     }
 
     /**
