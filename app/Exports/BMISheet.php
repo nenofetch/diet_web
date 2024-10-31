@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 
-class BmiSheet implements FromCollection, WithTitle, WithHeadings
+class BMISheet implements FromCollection, WithTitle, WithHeadings
 {
     public function collection()
     {
