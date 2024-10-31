@@ -6,6 +6,7 @@ use App\Exports\HistoryExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\History;
+use DateTime;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HistoryController extends Controller
@@ -124,6 +125,7 @@ class HistoryController extends Controller
 
     public function export()
     {
-        return Excel::download(new HistoryExport, 'riwayat.xlsx');
+        $filename = (new DateTime('now'))->format('Y-m-d_H-i-s') . '-riwayat-laporan.xlsx';
+        return Excel::download(new HistoryExport, $filename);
     }
 }
