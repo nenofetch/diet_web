@@ -12,8 +12,8 @@ class HistoryExport implements WithMultipleSheets
     public function sheets(): array
     {
         return [
-            new BmrSheet(),
-            new BmiSheet(),
+            new BMRSheet(),
+            new BMISheet(),
             new FoodSheet(),
             new DrinkSheet(),
             new SnackSheet(),
