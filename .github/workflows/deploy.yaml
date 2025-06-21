@@ -26,7 +26,7 @@ jobs:
           php_version: "8.3"
           dev: no
           args: --optimize-autoloader --no-dev
-          php_extensions: gd
+          php_extensions: gd zip
 
       - name: Install npm modules
         run: npm install
