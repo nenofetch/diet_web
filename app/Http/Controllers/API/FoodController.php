@@ -35,7 +35,8 @@ class FoodController extends Controller
                     'carbohydrates' => $food->carbohydrate,
                     'protein' => $food->proteins,
                     'fat' => $food->fat,
-                    'duration' => '0'
+                    'duration' => '0',
+                    'tgl_input'=> $request->tgl_input,
                 ]);
             }
         }

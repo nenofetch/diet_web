@@ -30,7 +30,7 @@ class SportController extends Controller
             'protein' => '0',
             'fat' => '0',
             'carbohydrates' => '0',
-
+            'tgl_input'=> $request->tgl_input,
         ]);
 
         return ResponseFormatter::success($sport, 'Data berhasil ditambahkan!');

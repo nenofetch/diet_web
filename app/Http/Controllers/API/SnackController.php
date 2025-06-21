@@ -35,7 +35,8 @@ class SnackController extends Controller
                     'carbohydrates' => $snack->carbohydrate,
                     'protein' => $snack->proteins,
                     'fat' => $snack->fat,
-                    'duration' => '0'
+                    'duration' => '0',
+                    'tgl_input'=> $request->tgl_input
                 ]);
             }
         }
