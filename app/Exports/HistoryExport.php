@@ -17,6 +17,7 @@ class HistoryExport implements WithMultipleSheets
             new FoodSheet(),
             new DrinkSheet(),
             new SnackSheet(),
+            new SportSheet(),
         ];
     }
 
