@@ -46,7 +46,7 @@
                                 @foreach($drink as $row)
                                     <tr>
                                         <th class="text-center p-3" style="width: 5%;">{{ $loop->iteration }}</th>
-                                        <td class="p-3">{{ date('d-m-Y',  strtotime($row->created_at)) }}</td>
+                                        <td class="p-3">{{ date('d-m-Y',  strtotime($row->tgl_input)) }}</td>
                                         <td class="p-3">{{ $row->user->name }}</td>
                                         <td class="p-3">{{ $row->name }}</td>
                                         <td class="p-3">{{ $row->calories }}</td>
@@ -54,6 +54,7 @@
                                         <td class="p-3">{{ $row->protein }}</td>
                                         <td class="p-3">{{ $row->fat }}</td>
                                         <td>
+                                            <button type="button" class="btn btn-primary btn-sm mb-2 btn-edit" data-id="{{ $row->id }}"><i class="fa-solid fa-pencil"></i> Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm mb-2 btn-delete" data-id="{{ $row->id }}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
