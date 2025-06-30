@@ -46,6 +46,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [API\AuthController::class, 'logout']);
     Route::get('bmr', [API\BMRCalculatorController::class, 'index']);
     Route::get('bmr/show', [API\BMRCalculatorController::class, 'show']);
-
     Route::get('tdee', [API\TDEECalculatorController::class, 'index']);
+
+    // store education history activity
+    Route::post('education-history-activity', [API\EducationHistoryActivityController::class, 'store']);
 });

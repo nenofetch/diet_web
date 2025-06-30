@@ -37,18 +37,23 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function sentChats()
+    public function sentConsultations()
     {
-        return $this->hasMany(Chat::class, 'sender_id');
+        return $this->hasMany(Consultation::class, 'sender_id');
     }
 
-    public function receivedChats()
+    public function receivedConsultations()
     {
-        return $this->hasMany(Chat::class, 'recipient_id');
+        return $this->hasMany(Consultation::class, 'recipient_id');
     }
 
     public function histories()
     {
         return $this->hasMany(History::class);
+    }
+
+    public function educationHistoriesActivities()
+    {
+        return $this->hasMany(EducationHistoryActivity::class);
     }
 }
