@@ -12,9 +12,9 @@ return new class extends Migration {
      */
     public function up()
     {
-         Schema::table('anthropometries', function (Blueprint $table) {
-            $table->unsignedDouble('weight');
-            $table->unsignedDouble('height');
+        Schema::table('anthropometries', function (Blueprint $table) {
+            $table->unsignedBigInteger('weight');
+            $table->unsignedBigInteger('height');
 
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
