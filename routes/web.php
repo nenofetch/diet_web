@@ -35,10 +35,12 @@ Route::middleware('role:admin')->group(function () {
     ]);
 
     Route::prefix('histories')->name('histories.')->group(function () {
+        // BMI, BMR and TDEE History Routes
         Route::get('bmi', [Backend\HistoryController::class, 'bmi'])->name('bmi');
         Route::delete('bmi/{id}', [Backend\HistoryController::class, 'bmiDestroy'])->name('bmiDestroy');
         Route::get('bmr', [Backend\HistoryController::class, 'bmr'])->name('bmr');
         Route::delete('bmr/{id}', [Backend\HistoryController::class, 'bmrDestroy'])->name('bmrDestroy');
+        // Breakfast, Lunch, Dinner, Snack, Drink, History Routes
         Route::get('breakfast', [Backend\HistoryController::class, 'breakfast'])->name('breakfast');
         Route::delete('breakfast/{id}', [Backend\HistoryController::class, 'breakfastDestroy'])->name('breakfastDestroy');
         Route::get('lunch', [Backend\HistoryController::class, 'lunch'])->name('lunch');
@@ -49,8 +51,17 @@ Route::middleware('role:admin')->group(function () {
         Route::delete('snack/{id}', [Backend\HistoryController::class, 'snackDestroy'])->name('snackDestroy');
         Route::get('drink', [Backend\HistoryController::class, 'drink'])->name('drink');
         Route::delete('drink/{id}', [Backend\HistoryController::class, 'drinkDestroy'])->name('drinkDestroy');
+        
+        //Sport History Routes
         Route::get('sport', [Backend\HistoryController::class, 'sport'])->name('sport');
         Route::delete('sport/{id}', [Backend\HistoryController::class, 'sportDestroy'])->name('sportDestroy');
+
+        // Education History Routes
+        Route::get('educations', [Backend\EducationHistoryActivityController::class, 'index'])->name('educations');
+        Route::put('educations/{id}', [Backend\EducationHistoryActivityController::class, 'update'])->name('educationsUpdate');
+        Route::delete('educations/{id}', [Backend\EducationHistoryActivityController::class, 'destroy'])->name('educationsDestroy');
+
+        // Export data
         Route::get('export', [Backend\HistoryController::class, 'export'])->name('export');
     });
 
