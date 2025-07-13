@@ -16,7 +16,7 @@ class EducationHistoryActivityController extends Controller
     public function index()
     {
         $data['educationHistoryActivity'] = EducationHistoryActivity::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view('backend.histories.education', $data);
+        return view('backend.histories.education.index', $data);
     }
 
     /**
@@ -48,7 +48,8 @@ class EducationHistoryActivityController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['educationHistoryActivity'] = EducationHistoryActivity::find($id);
+        return view('backend.histories.education.edit', $data);
     }
 
     /**
@@ -56,7 +57,19 @@ class EducationHistoryActivityController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Validation
+        $data = $request->validate([
+            'education_name' => 'required|max:255',
+            'tgl_input' => 'required',
+        ]);
+
+        $education = EducationHistoryActivity::find($id);
+        $education->update([
+            'education_name' => $request->education_name,
+            'tgl_input' => $request->tgl_input,
+        ]);
+
+        return redirect()->route('histories.educations-history.index')->with('message', 'Riwayat pendidikan berhasil diubah!');
     }
 
     /**
@@ -64,6 +77,9 @@ class EducationHistoryActivityController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $education = EducationHistoryActivity::find($id);
+        $education->delete();
+
+        return redirect()->route('histories.educations-history.index')->with('message', 'Riwayat pendidikan berhasil dihapus!');
     }
 }
