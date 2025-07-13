@@ -13,7 +13,7 @@ class HistoryController extends Controller
 {
     public function bmi()
     {
-        $data['bmi'] = History::where('category', 'BMI')->orderBy('created_at', 'desc')->get();
+        $data['bmi'] = History::with('user')->where('category', 'BMI')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.bmi.index', $data);
     }
@@ -58,7 +58,7 @@ class HistoryController extends Controller
 
     public function bmr()
     {
-        $data['bmr'] = History::where('category', 'BMR')->orderBy('created_at', 'desc')->get();
+        $data['bmr'] = History::with('user')->where('category', 'BMR')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.bmr.index', $data);
     }
@@ -101,7 +101,7 @@ class HistoryController extends Controller
 
     public function breakfast()
     {
-        $data['breakfast'] = History::where('category', 'Makan Pagi')->orderBy('created_at', 'desc')->get();
+        $data['breakfast'] = History::with('user')->where('category', 'Makan Pagi')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.breakfast.index', $data);
     }
@@ -146,7 +146,7 @@ class HistoryController extends Controller
 
     public function lunch()
     {
-        $data['lunch'] = History::where('category', 'Makan Siang')->orderBy('created_at', 'desc')->get();
+        $data['lunch'] = History::with('user')->where('category', 'Makan Siang')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.lunch.index', $data);
     }
@@ -191,7 +191,7 @@ class HistoryController extends Controller
 
     public function dinner()
     {
-        $data['dinner'] = History::where('category', 'Makan Malam')->orderBy('created_at', 'desc')->get();
+        $data['dinner'] = History::with('user')->where('category', 'Makan Malam')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.dinner.index', $data);
     }
@@ -236,7 +236,7 @@ class HistoryController extends Controller
 
     public function snack()
     {
-        $data['snack'] = History::where('category', 'Cemilan')->orderBy('created_at', 'desc')->get();
+        $data['snack'] = History::with('user')->where('category', 'Cemilan')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.snack.index', $data);
     }
@@ -281,7 +281,7 @@ class HistoryController extends Controller
 
     public function drink()
     {
-        $data['drink'] = History::where('category', 'Minuman')->orderBy('created_at', 'desc')->get();
+        $data['drink'] = History::with('user')->where('category', 'Minuman')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.drink.index', $data);
     }
@@ -326,7 +326,7 @@ class HistoryController extends Controller
 
     public function sport()
     {
-        $data['sport'] = History::where('category', 'Olahraga')->orderBy('created_at', 'desc')->get();
+        $data['sport'] = History::with('user')->where('category', 'Olahraga')->orderBy('created_at', 'desc')->get();
 
         return view('backend.histories.sport.index', $data);
     }
