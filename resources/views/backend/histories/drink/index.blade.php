@@ -1,6 +1,6 @@
 @extends('layouts.backend.main')
 
-@section('title', 'Riwayat Cemilan')
+@section('title', 'Riwayat Air Minum')
 
 @section('css')
 <!-- Datatables -->
@@ -13,11 +13,11 @@
 <div class="container-fluid">
     <div class="layout-specing">
         <div class="d-md-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Riwayat Cemilan</h5>
+            <h5 class="mb-0">Riwayat Air Minum</h5>
 
             <nav aria-label="breadcrumb" class="d-inline-block">
                 <ul class="breadcrumb bg-transparent rounded mb-0 p-0">
-                    <li class="breadcrumb-item text-capitalize"><a href="#">Riwayat Cemilan</a></li>
+                    <li class="breadcrumb-item text-capitalize"><a href="#">Riwayat Air Minum</a></li>
                     <li class="breadcrumb-item text-capitalize active" aria-current="page">list</li>
                 </ul>
             </nav>
@@ -33,7 +33,7 @@
                                     <th class="text-center border-bottom p-3">No</th>
                                     <th class="border-bottom p-3">Tanggal</th>
                                     <th class="border-bottom p-3">Nama Pengguna</th>
-                                    <th class="border-bottom p-3">Nama Cemilan</th>
+                                    <th class="border-bottom p-3">Nama Minuman</th>
                                     <th class="border-bottom p-3">Kalori</th>
                                     <th class="border-bottom p-3">Karbohidrat</th>
                                     <th class="border-bottom p-3">Protein</th>
@@ -43,7 +43,7 @@
                             </thead>
                             <tbody>
                                 <!-- Start -->
-                                @foreach($snack as $row)
+                                @foreach($drink as $row)
                                     <tr>
                                         <th class="text-center p-3" style="width: 5%;">{{ $loop->iteration }}</th>
                                         <td class="p-3">{{ date('d-m-Y',  strtotime($row->tgl_input)) }}</td>
@@ -54,7 +54,8 @@
                                         <td class="p-3">{{ $row->protein }}</td>
                                         <td class="p-3">{{ $row->fat }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm mb-2 btn-edit" data-id="{{ $row->id }}"><i class="fa-solid fa-pencil"></i> Edit</button>
+<a href="{{ route('histories.drink.edit', $row->id) }}" class="btn btn-primary btn-sm mb-2"><i
+                                                    class="fa-solid fa-pencil"></i> Edit</a>
                                             <button type="button" class="btn btn-danger btn-sm mb-2 btn-delete" data-id="{{ $row->id }}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
@@ -113,7 +114,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "snack/" + id,
+                    url: "drink/" + id,
                     type: 'DELETE',
                     data: {
                         "id": id,

@@ -54,7 +54,8 @@
                                         <td class="p-3">{{ $row->protein }}</td>
                                         <td class="p-3">{{ $row->fat }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-sm mb-2 btn-edit" data-id="{{ $row->id }}"><i class="fa-solid fa-pencil"></i> Edit</button>
+<a href="{{ route('histories.breakfast.edit', $row->id) }}" class="btn btn-primary btn-sm mb-2"><i
+                                                    class="fa-solid fa-pencil"></i> Edit</a>
                                             <button type="button" class="btn btn-danger btn-sm mb-2 btn-delete" data-id="{{ $row->id }}"><i class="fa-solid fa-trash"></i> Hapus</button>
                                         </td>
                                     </tr>
