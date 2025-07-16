@@ -20,7 +20,7 @@ class FoodSheet implements FromCollection, WithTitle, WithHeadings
                 'karbohidrat' => $history->carbohydrates,
                 'protein' => $history->protein,
                 'lemak' => $history->fat,
-                'dikonsumsi_pada' => $history->created_at->format('d-m-Y, H:i:s'),
+                'dikonsumsi_pada' => $history->tgl_input,
             ];
         });
     }

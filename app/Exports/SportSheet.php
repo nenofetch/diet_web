@@ -17,7 +17,7 @@ class SportSheet implements FromCollection, WithTitle, WithHeadings
                 'jenis_olahraga' => $history->name,
                 'durasi' => $history->duration,
                 'tgl_input' => $history->tgl_input,
-                'tanggal_laporan' => $history->created_at->format('d-m-Y, H:i:s'),
+                'tanggal_laporan' => $history->tgl_input,
             ];
         }); // Filter for Sport data
     }
