@@ -81,9 +81,9 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => $rules_email,
             'password' => $rules_password,
-            'date_of_birth' => $request->date_of_birth,
-            'gender' => $request->gender,
-            'work' => $request->work,
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+            'work' => 'required',
         ]);
 
         // update to table
