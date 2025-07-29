@@ -84,7 +84,13 @@
 <script>
     // show datatable with search and pagination
     $(document).ready(function() {
-        $('#table').DataTable();
+$('#table').DataTable({
+"pageLength": 50,
+"processing": true,
+"serverSide": false,
+"deferRender": true,
+"order": [[ 1, "desc" ]]
+});
     });
 
     // show dialog success
@@ -114,7 +120,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: "snack/" + id,
+url: "{{ route('histories.snackDestroy', ':id') }}".replace(':id', id),
                     type: 'DELETE',
                     data: {
                         "id": id,

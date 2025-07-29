@@ -33,6 +33,7 @@
                                     <th class="text-center border-bottom p-3">No</th>
                                     <th class="border-bottom p-3">Tanggal</th>
                                     <th class="border-bottom p-3">Nama Pengguna</th>
+<th class="border-bottom p-3">Jenis Test</th>
                                     <th class="border-bottom p-3">Nilai IMT</th>
                                     <th class="border-bottom p-3">Tinggi</th>
                                     <th class="border-bottom p-3">Berat</th>
@@ -47,6 +48,15 @@
                                         <th class="text-center p-3" style="width: 5%;">{{ $loop->iteration }}</th>
                                         <td class="p-3">{{ date('d-m-Y',  strtotime($row->tgl_input)) }}</td>
                                         <td class="p-3">{{ $row->user->name }}</td>
+<td class="p-3">
+    @php
+    $nameArray = json_decode($row->name, true);
+    $testType = is_array($nameArray) && !empty($nameArray) ? $nameArray[0] : 'BMI';
+    @endphp
+    <span class="badge {{ str_contains($testType, 'Pre-test') ? 'bg-warning' : 'bg-success' }}">
+        {{ $testType }}
+    </span>
+</td>
                                         <td class="p-3">{{ $row->imt }}</td>
                                         <td class="p-3">{{ $row->height }}</td>
                                         <td class="p-3">{{ $row->weight }}</td>

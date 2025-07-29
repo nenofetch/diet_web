@@ -15,7 +15,19 @@ class EducationHistoryActivityController extends Controller
      */
     public function index()
     {
-        $data['educationHistoryActivity'] = EducationHistoryActivity::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        // For admin users, show all education history data
+        // For regular users, show only their own data
+        if (Auth::user()->roles->contains('name', 'admin')) {
+            $data['educationHistoryActivity'] = EducationHistoryActivity::with(['user:id,name,email'])
+                ->orderBy('created_at', 'desc')
+                ->limit(1000) // Limit to prevent memory issues
+                ->get();
+        } else {
+            $data['educationHistoryActivity'] = EducationHistoryActivity::where('user_id', Auth::user()->id)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+
         return view('backend.histories.education.index', $data);
     }
 
