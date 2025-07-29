@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('histories', function (Blueprint $table) {
-            $table->string('name')->after('category')->nullable();
+            $table->json('name')->after('category')->nullable();
         });
     }
 
