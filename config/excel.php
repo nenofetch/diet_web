@@ -257,7 +257,7 @@ return [
         |
         */
         'batch'       => [
-            'memory_limit' => 60000,
+            'memory_limit' => env('EXCEL_MEMORY_LIMIT', 60000),
         ],
 
         /*
