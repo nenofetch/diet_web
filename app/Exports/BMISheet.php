@@ -11,16 +11,29 @@ class BMISheet implements FromCollection, WithTitle, WithHeadings
 {
     public function collection()
     {
-        return History::where('name', 'LIKE', '%BMI%')->with('user')->get()->map(function ($history) {
-            return [
-                'nama_pengguna' => $history->user->name,
-                'jenis' => $history->category,
+        // Set memory limit for this sheet
+        ini_set('memory_limit', '256M');
+
+        return History::where('category', 'BMI')
+            ->with(['user:id,name,email'])
+            ->orderBy('tgl_input', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->limit(5000) // Limit to prevent memory issues
+            ->get()
+            ->map(function ($history) {
+                // Extract BMI type from name (Pre-test or Post-test)
+                $nameArray = json_decode($history->name, true);
+                $bmiType = is_array($nameArray) && !empty($nameArray) ? $nameArray[0] : 'BMI';
+
+                return [
+                'nama_pengguna' => $history->user->name ?? 'N/A',
+                'jenis_test' => $bmiType,
                 'tinggi_badan' => $history->height,
                 'berat_badan' => $history->weight,
-                'hasil_bmr_dan_tdee' => $history->result_bmi,
-                'tanggal_laporan' => $history->created_at->format('d-m-Y, H:i:s'),
-            ];
-        }); // Filter for BMI data
+                    'hasil_bmi' => $history->result_bmi,
+                    'tanggal_test' => $history->tgl_input,
+                ];
+            }); // Filter for BMI data
     }
 
     public function title(): string
@@ -32,10 +45,11 @@ class BMISheet implements FromCollection, WithTitle, WithHeadings
     {
         return [
             'Nama Pengguna',
-            'Jenis',
+            'Jenis Test',
             'Tinggi Badan/M',
             'Berat Badan/Kg',
             'BMI',
+            'Tanggal Test',
         ];
     }
 }

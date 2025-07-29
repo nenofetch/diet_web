@@ -11,16 +11,24 @@ class BMRSheet implements FromCollection, WithTitle, WithHeadings
 {
     public function collection()
     {
-        return History::where('name', 'LIKE', '%BMR %')->with('user')->get()->map(function ($history) {
-            return [
-                'nama_pengguna' => $history->user->name,
+        // Set memory limit for this sheet
+        ini_set('memory_limit', '256M');
+
+        return History::where('name', 'LIKE', '%BMR %')
+            ->with(['user:id,name,email'])
+            ->orderBy('created_at', 'desc')
+            ->limit(5000) // Limit to prevent memory issues
+            ->get()
+            ->map(function ($history) {
+                return [
+                'nama_pengguna' => $history->user->name ?? 'N/A',
                 'jenis' => $history->name,
                 'tinggi_badan' => $history->height,
                 'berat_badan' => $history->weight,
                 'hasil_bmr_dan_tdee' => $history->result_bmr,
-                'tanggal_laporan' => $history->created_at->format('d-m-Y, H:i:s'),
-            ];
-        }); // Filter for BMR data
+                    'tanggal_laporan' => $history->tgl_input->format('d-m-Y, H:i:s'),
+                ];
+            }); // Filter for BMR data
     }
 
     public function title(): string

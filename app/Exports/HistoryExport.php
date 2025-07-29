@@ -2,15 +2,23 @@
 
 namespace App\Exports;
 
-
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use App\Exports\BMRSheet;
+use App\Exports\BMISheet;
+use App\Exports\FoodSheet;
+use App\Exports\DrinkSheet;
+use App\Exports\SnackSheet;
+use App\Exports\SportSheet;
+use App\Exports\EducationSheet;
 
 class HistoryExport implements WithMultipleSheets
 {
-
-
     public function sheets(): array
     {
+        // Set memory limit for export
+        ini_set('memory_limit', '512M');
+        set_time_limit(300); // 5 minutes timeout
+
         return [
             new BMRSheet(),
             new BMISheet(),

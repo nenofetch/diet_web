@@ -11,15 +11,23 @@ class SportSheet implements FromCollection, WithTitle, WithHeadings
 {
     public function collection()
     {
-        return History::where('category', 'LIKE', '%Olahraga%')->with('user')->get()->map(function ($history) {
-            return [
-                'nama_pengguna' => $history->user->name,
+        // Set memory limit for this sheet
+        ini_set('memory_limit', '256M');
+
+        return History::where('category', 'LIKE', '%Olahraga%')
+            ->with(['user:id,name,email'])
+            ->orderBy('created_at', 'desc')
+            ->limit(5000) // Limit to prevent memory issues
+            ->get()
+            ->map(function ($history) {
+                return [
+                'nama_pengguna' => $history->user->name ?? 'N/A',
                 'jenis_olahraga' => $history->name,
                 'durasi' => $history->duration,
                 'tgl_input' => $history->tgl_input,
-                'tanggal_laporan' => $history->tgl_input,
-            ];
-        }); // Filter for Sport data
+                    'tanggal_laporan' => $history->tgl_input,
+                ];
+            }); // Filter for Sport data
     }
 
     public function title(): string
